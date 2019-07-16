@@ -1,14 +1,7 @@
 import React from "react";
+import "./style.css";
 
 function AwesomeHeader() {
-  return (
-    <div class="topnav">
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-      </ul>
-    </div>
-  );
+  return <header className="head">This is header</header>;
 }
 export default AwesomeHeader;
