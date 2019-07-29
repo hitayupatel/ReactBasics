@@ -2,24 +2,34 @@ import React, { Component } from "react";
 import ComponentCard from "./Components/ComponentCard";
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      loading: false,
+      character: {}
+    };
+  }
+
+  componentDidMount() {
+    this.setState({ loading: true });
+    fetch("https://swapi.co/api/people/1")
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          loading: false,
+          character: data
+        });
+      });
+  }
   render() {
+    const text = this.state.loading ? "loading..." : this.state.character.name;
     function handleClick() {
       console.log("I was clicked!!");
     }
     function handleHover() {
-      console.log("Hovered!!");
+      console.log("Hovered!!cd");
     }
-    return (
-      <div>
-        <img
-          onMouseOver={handleHover}
-          src="https://www.fillmurray.com/200/300"
-        />
-        <br />
-        <br />
-        <button onClick={handleClick}>Click Me</button>
-      </div>
-    );
+    return <div>{text}</div>;
   }
 }
 
